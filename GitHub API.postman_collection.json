@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "8e30c922-dd76-4818-ac84-78e39a94056f",
+		"name": "GitHub API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25592186"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Get Single Issue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"HTTP ststus\", function (){\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function (){\r",
+									"    console.log(\"RESPONSE: \", pm.response)\r",
+									"pm.expect(pm.response.code).equals(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status ccheck\", function (){\r",
+									"pm.expect(pm.response.status).equals(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://github.com/adi-sto/postman/issues/3",
+							"protocol": "https",
+							"host": [
+								"github",
+								"com"
+							],
+							"path": [
+								"adi-sto",
+								"postman",
+								"issues",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Issues",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check if response is an array of issues\", function() {\r",
+									"const body = pm.response.json();\r",
+									"console.log(\"BODY\", body);\r",
+									"pm.expect(Array.isArray(body));\r",
+									"\r",
+									"for (let item of body) {\r",
+									"pm.expect(typeof(item.title)).equals(\"string\");\r",
+									"pm.expect(typeof(item.number)).equals(\"number\");\r",
+									"pm.expect(item.number, \"Issue number property\").is.greaterThan(0);\r",
+									"}\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/adi-sto/postman/issues",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"adi-sto",
+								"postman",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Repos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/users/adi-sto/repos",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users",
+								"adi-sto",
+								"repos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single Repo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check  repo name\", function() {\r",
+									"const body = pm.response.json();\r",
+									"pm.expect(body.name, \"Name property\").equals(\"postman\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/adi-sto/postman",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"adi-sto",
+								"postman"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET issue label",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/adi-sto/postman/issues/4/labels",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"adi-sto",
+								"postman",
+								"issues",
+								"4",
+								"labels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get issue 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check issue number\", function() {\r",
+									"const body = pm.response.json();\r",
+									"pm.expect(body.number).to.be.equal(3);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HTTP ststus\", function (){\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function (){\r",
+									"    console.log(\"RESPONSE: \", pm.response)\r",
+									"pm.expect(pm.response.code).equals(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status ccheck\", function (){\r",
+									"pm.expect(pm.response.status).equals(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/adi-sto/postman/issues/3",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"adi-sto",
+								"postman",
+								"issues",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST Issue",
+			"item": [
+				{
+					"name": "POST New Issue with label",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check  issue name\", function() {\r",
+									"let body = pm.response.json();\r",
+									"pm.expect(body.title, \"Title property\").equals(\"Issue 5 with label\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "adi-sto",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Issue 5 with label\",\r\n    \"labels\" : [\"bug\", \"priority:critical\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.github.com/repos/adi-sto/postman/issues",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"adi-sto",
+								"postman",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
